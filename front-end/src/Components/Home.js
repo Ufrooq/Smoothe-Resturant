@@ -28,10 +28,13 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setInterval(() => {
+    let intervalId = setInterval(() => {
       setshow(false);
     }, 1000);
-  }, []);
+    return () => {
+      clearInterval(intervalId);
+    };
+  });
 
   return (
     <>

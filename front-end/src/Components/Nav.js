@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { globalcontext } from "../App";
 import { Logout } from "./Logout";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Nav = () => {
   const { isLoggedIn, setIsLoggedIn, userName, setuserName } =
@@ -25,6 +27,7 @@ const Nav = () => {
   const handleLogout = async () => {
     try {
       await Logout();
+      toast.success("Logged out");
       setIsLoggedIn(false);
       setuserName("");
       navigate("/");
@@ -32,42 +35,48 @@ const Nav = () => {
       console.error("Logout error:", error);
     }
   };
+
+  const userData = async () => {
+    try {
+      handleUserEmail();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const userData = async () => {
-      try {
-        handleUserEmail();
-      } catch (error) {
-        console.log(error);
-      }
-    };
     userData();
   }, [isLoggedIn]);
   return (
-    <nav>
-      <Link to="/">
-        <h1>Umar Smoothies</h1>
-      </Link>
-      {userName && (
-        <p>
-          Logged in as :{" "}
-          <span style={{ color: "#f89fd4", fontWeight: "bold" }}>
-            {userName}
-          </span>
-        </p>
-      )}
-      <div className="controllers">
-        <Link to="/signup">
-          <button id="signup">Signup</button>
+    <>
+      <nav>
+        <Link to="/">
+          <h1>Umar Smoothies</h1>
         </Link>
-        {isLoggedIn ? (
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
+        {userName && (
+          <p>
+            Logged in as :{" "}
+            <span style={{ color: "#f89fd4", fontWeight: "bold" }}>
+              {userName}
+            </span>
+          </p>
         )}
+        <div className="controllers">
+          <Link to="/signup">
+            <button id="signup">Signup</button>
+          </Link>
+          {isLoggedIn ? (
+            <button onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+          )}
+        </div>
+      </nav>
+      <div>
+        <ToastContainer autoClose={3000} />
       </div>
-    </nav>
+    </>
   );
 };
 

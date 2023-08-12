@@ -53,12 +53,11 @@ const Login = () => {
       if (user) {
         toast.success("Logged in");
         setInterval(() => {
-          toast.success("Logged in");
           setIsLoggedIn(true);
           console.log("User Logged   In successfully -->");
           setuserData({ email: "", password: "" });
           navigate("/");
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error.message);
@@ -88,7 +87,7 @@ const Login = () => {
         <button id="sin_btn">LOGIN</button>
       </form>
       <div>
-        <ToastContainer />
+        <ToastContainer autoClose={3000} />
       </div>
     </>
   );

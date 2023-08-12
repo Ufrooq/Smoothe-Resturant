@@ -46,11 +46,14 @@ const Smoothe = () => {
     }
   };
   useEffect(() => {
-    fetchAllsmoothes();
-    setInterval(() => {
+    let intervalId = setInterval(() => {
+      fetchAllsmoothes();
       setshow(false);
     }, 2000);
-  }, []);
+    return () => {
+      clearInterval(intervalId);
+    };
+  });
   return (
     <>
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
