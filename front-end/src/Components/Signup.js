@@ -50,7 +50,7 @@ const Signup = () => {
       }
       if (user) {
         setIsLoggedIn(true);
-        toast.success("Account Created Successfully !");
+        toast.success("Account Created !");
         console.log("Data is posted from front-end successfully -->");
         setuserData({ name: "", email: "", password: "" });
         navigate("/");

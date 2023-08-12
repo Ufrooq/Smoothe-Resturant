@@ -52,12 +52,10 @@ const Login = () => {
       }
       if (user) {
         toast.success("Logged in");
-        setInterval(() => {
-          setIsLoggedIn(true);
-          console.log("User Logged   In successfully -->");
-          setuserData({ email: "", password: "" });
-          navigate("/");
-        }, 1000);
+        setIsLoggedIn(true);
+        console.log("User Logged   In successfully -->");
+        setuserData({ email: "", password: "" });
+        navigate("/");
       }
     } catch (error) {
       console.log(error.message);

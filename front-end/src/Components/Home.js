@@ -34,14 +34,14 @@ const Home = () => {
     return () => {
       clearInterval(intervalId);
     };
-  });
+  }, []);
 
   return (
     <>
       {show ? (
         <>
           <div className="loading">
-            <i class="fa-solid fa-spinner fa-spin"></i>
+            <i className="fa-solid fa-spinner fa-spin"></i>
             <p>Loading...</p>
           </div>
         </>

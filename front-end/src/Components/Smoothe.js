@@ -47,7 +47,6 @@ const Smoothe = () => {
   };
   useEffect(() => {
     let intervalId = setInterval(() => {
-      fetchAllsmoothes();
       setshow(false);
     }, 2000);
     return () => {
@@ -69,7 +68,7 @@ const Smoothe = () => {
       </button>
       {show ? (
         <div className="loading">
-          <i class="fa-solid fa-spinner fa-spin"></i>
+          <i className="fa-solid fa-spinner fa-spin"></i>
           <p>Loading...</p>
         </div>
       ) : (
